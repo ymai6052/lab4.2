@@ -12,40 +12,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class utilities {
-	private static final Integer Integer = null;
-	ArrayList<String> CSVData;
+public class CSVUtilities {
+	private static ArrayList<String> CSVData;
 	int numColumns;
 	//Constructor accepts a File and reads all the data into CSVData
 	//initializes numColumns based on length of the first array
-	public utilities(File csv)
+	public CSVUtilities(File csv)
 	{
-		Path pathtofile=Paths.get("complaint.csv");
-		BufferedReader br = null;
-		try
-		{
-			br = new BufferedReader(new FileReader(csv));
-		} 
-		catch (FileNotFoundException e1)
-		{
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String line = null;
-		try 
-		{
-			line = br.readLine();
-		} 
-		catch (IOException e)
-		{
+		FileReader csv2 = null;
+		try {
+			csv2 = new FileReader(csv);
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		while (line != null) 
-		{ 
-			CSVData.add(line);
+		
+		try (BufferedReader br = new BufferedReader(csv2)) {
+			String line = br.readLine();
+			while (line != null) {
+				CSVData.add(line);
+				line = br.readLine();
+			}
 		}
-		this.numColumns=getColumnHeaders().size();
+		catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+		
+		this.numColumns = getColumnHeaders().size();
 	}
 	
 	//Return an ArrayList with the headers for each column
@@ -66,13 +59,13 @@ public abstract class utilities {
 	}
 	
 	//Return an ArrayList with the data converted to Integer
-	public List<Integer> getDataInt(int column)
+	public static List<Integer> getDataInt(int column)
 	{
 		List<Integer> dataInt=new ArrayList<Integer>();
 		for (int i = 1; i < CSVData.size(); i++) {
 			String[] row = CSVData.get(i).split(",");
 			Integer data= Integer.parseInt(row[column]);
-			dataInt.add( data);
+			dataInt.add(data);
 		}
 		return dataInt;
 	}
@@ -84,7 +77,7 @@ public abstract class utilities {
 		for (int i = 1; i < CSVData.size(); i++) {
 			String[] row = CSVData.get(i).split(",");
 			Double data= Double.parseDouble(row[column]);
-			dataDouble.add( data);
+			dataDouble.add(data);
 		}
 		return dataDouble;
 	}
