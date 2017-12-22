@@ -14,18 +14,12 @@ import java.util.List;
 
 public class CSVUtilities {
 	private static ArrayList<String> CSVData;
-	int numColumns;
+	private int numColumns;
 	//Constructor accepts a File and reads all the data into CSVData
 	//initializes numColumns based on length of the first array
 	public CSVUtilities(File csv)
 	{
-		FileReader csv2 = null;
-		try {
-			csv2 = new FileReader(csv);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		FileReader csv2 = new FileReader(csv);
 		
 		try (BufferedReader br = new BufferedReader(csv2)) {
 			String line = br.readLine();
