@@ -11,13 +11,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+// Yiren Mai
 public class CSVUtilities {
-	private static ArrayList<String> CSVData;
+	private static ArrayList<String> CSVData=new ArrayList<String>();
 	private int numColumns;
-	//Constructor accepts a File and reads all the data into CSVData
-	//initializes numColumns based on length of the first array
-	public CSVUtilities(File csv)
+	
+	public CSVUtilities(File csv) throws IOException
 	{
 		FileReader csv2 = new FileReader(csv);
 		
@@ -36,13 +35,13 @@ public class CSVUtilities {
 	}
 	
 	//Return an ArrayList with the headers for each column
-	public List<String> getColumnHeaders()
+	public static List<String> getColumnHeaders()
 	{
 		return Arrays.asList(CSVData.get(0).split(","));
 	}
 	
 	//Return an ArrayList with the data for a column specified
-	public List<String> getDataString(int column)
+	public static List<String> getDataString(int column)
 	{
 		List<String> dataString=new ArrayList<String>();
 		for (int i = 1; i < CSVData.size(); i++) {
@@ -65,7 +64,7 @@ public class CSVUtilities {
 	}
 	
 	//Return an ArrayList with the data converted to Double
-	public List<Double> getDataDouble(int column)
+	public static List<Double> getDataDouble(int column)
 	{
 		List<Double> dataDouble=new ArrayList<Double>();
 		for (int i = 1; i < CSVData.size(); i++) {

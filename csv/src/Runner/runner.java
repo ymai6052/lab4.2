@@ -16,7 +16,7 @@ public class runner {
 	{
 		File complaint = new File("complaint.csv");
 		
-		CSVUtilities csv = new CSVUtilities(complaint);
+		CSVUtilities csv = new CSVUtilities("complaint.csv");
 		
 		List<String> heading = csv.getColumnHeaders();
 		for (String x: heading) 
@@ -29,6 +29,20 @@ public class runner {
 		{
 			System.out.print(x+ " ");
 		}
-	
+		List<String> status = CSVUtilities.getDataString(2);
+		for(String x : status)
+		{
+			System.out.print(x+ " ");
+		}
+		List<Integer> housenum = CSVUtilities.getDataInt(3);
+		for(Integer x : housenum)
+		{
+			System.out.print(x+ " ");
+		}
+		List<String> street = CSVUtilities.getDataString(4);
+		for(String x : street)
+		{
+			System.out.print(x+ " ");
+		}
 	}
 }
