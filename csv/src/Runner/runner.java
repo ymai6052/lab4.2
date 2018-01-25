@@ -1,5 +1,5 @@
 package Runner;
-
+// Yiren Mai
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class runner {
-	public static void main(String[]args)
+	public static void main(String[]args) throws IOException
 	{
-		File complaint = new File("complaint.csv");
+		File scores= new File("scores.csv");
 		
-		CSVUtilities csv = new CSVUtilities("complaint.csv");
+		CSVUtilities csv = new CSVUtilities(scores);
 		
 		List<String> heading = csv.getColumnHeaders();
 		for (String x: heading) 
@@ -24,25 +24,20 @@ public class runner {
 			System.out.println(x);
 		}
 		
-		List<Integer> complaintnum = CSVUtilities.getDataInt(1);
-		for(int x : complaintnum)
+		List<Integer>reading = CSVUtilities.getDataInt(0);
+		for(int x : reading)
 		{
-			System.out.print(x+ " ");
+			System.out.println(x+ " ");
 		}
-		List<String> status = CSVUtilities.getDataString(2);
-		for(String x : status)
+		List<Integer> math = CSVUtilities.getDataInt(1);
+		for(Integer x : math)
 		{
-			System.out.print(x+ " ");
+			System.out.println(x+ " ");
 		}
-		List<Integer> housenum = CSVUtilities.getDataInt(3);
-		for(Integer x : housenum)
+		List<Integer> writing = CSVUtilities.getDataInt(2);
+		for(Integer x : writing)
 		{
-			System.out.print(x+ " ");
-		}
-		List<String> street = CSVUtilities.getDataString(4);
-		for(String x : street)
-		{
-			System.out.print(x+ " ");
+			System.out.println(x+ " ");
 		}
 	}
 }
